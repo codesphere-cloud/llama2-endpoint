@@ -1,0 +1,23 @@
+prepare:
+  # Put your commands here.
+  steps:
+  - name: "Install dependencies"
+    command: "pipenv install llama-cpp-python --skip-lock"
+  - name: "Install dependencies"
+    command: "pipenv install llama-cpp-python[server] --skip-lock"
+  - name: "Create model directory"
+    command: "mkdir models || true"    
+  - name: "Download model"
+    command: "wget -P /home/user/app/models https://huggingface.co/TheBloke/CodeLlama-7B-Instruct-GGUF/resolve/main/codellama-7b-instruct.Q5_K_M.gguf"   
+
+test:
+  # Put your commands here.
+  steps:
+  - name: "Unit Tests"
+    command: ""
+
+run:
+  # Put your commands here.
+  steps:
+  - name: "Run"
+    command: "pipenv run python3 -m llama_cpp.server --model /home/user/app/models/codellama-7b-instruct.Q5_K_M.gguf --port 3000 --host 0.0.0.0"
