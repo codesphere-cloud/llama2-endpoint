@@ -4,16 +4,16 @@ prepare:
   - name: "Install dependencies"
     command: "if [ -v NV_LIBCUBLAS_VERSION ];
       then echo 'Install for gpu'
-        && CMAKE_ARGS='-DLLAMA_CUBLAS=on' FORCE_CMAKE=1 pipenv install llama-cpp-python --skip-lock; 
+        && CMAKE_ARGS='-DLLAMA_CUBLAS=on' FORCE_CMAKE=1 pipenv install llama-cpp-python; 
       else echo 'Install for cpu'
-        && pipenv install llama-cpp-python --skip-lock; 
+        && pipenv install llama-cpp-python; 
       fi"
   - name: "Install server"
     command: "if [ -v NV_LIBCUBLAS_VERSION ];
       then echo 'Install server for gpu'
-        && CMAKE_ARGS='-DLLAMA_CUBLAS=on' FORCE_CMAKE=1 pipenv install llama-cpp-python[server] --skip-lock; 
+        && CMAKE_ARGS='-DLLAMA_CUBLAS=on' FORCE_CMAKE=1 pipenv install llama-cpp-python[server]; 
       else echo 'Install server for cpu'
-        && pipenv install llama-cpp-python[server] --skip-lock; 
+        && pipenv install llama-cpp-python[server]; 
       fi"
   - name: "Create model directory"
     command: "mkdir models || true"    
