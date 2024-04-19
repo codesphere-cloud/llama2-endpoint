@@ -18,7 +18,7 @@ prepare:
   - name: "Create model directory"
     command: "mkdir models || true"    
   - name: "Download model"
-    command: "wget -P /home/user/app/models https://huggingface.co/TheBloke/CodeLlama-7B-Instruct-GGUF/resolve/main/codellama-7b-instruct.Q5_K_M.gguf"   
+    command: "wget -P /home/user/app/models https://huggingface.co/QuantFactory/Meta-Llama-3-8B-Instruct-GGUF/resolve/main/Meta-Llama-3-8B-Instruct.Q4_K_M.gguf"   
 
 test:
   # Put your commands here.
@@ -32,7 +32,7 @@ run:
   - name: "Run"
     command: "if [ -v NV_LIBCUBLAS_VERSION ];
       then echo 'Start server with gpu'
-        && pipenv run python3 -m llama_cpp.server --model /home/user/app/models/codellama-7b-instruct.Q5_K_M.gguf --port 3000 --host 0.0.0.0 --n_gpu_layers 35; 
+        && pipenv run python3 -m llama_cpp.server --model /home/user/app/models/Meta-Llama-3-8B-Instruct.Q4_K_M.gguf --port 3000 --host 0.0.0.0 --n_gpu_layers 35; 
       else echo 'Start server with cpu'
-        && pipenv run python3 -m llama_cpp.server --model /home/user/app/models/codellama-7b-instruct.Q5_K_M.gguf --port 3000 --host 0.0.0.0; 
+        && pipenv run python3 -m llama_cpp.server --model /home/user/app/models/Meta-Llama-3-8B-Instruct.Q4_K_M.gguf --port 3000 --host 0.0.0.0; 
       fi"
